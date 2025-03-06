@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4582d56f58b497a8a6932e88f68fab8, type: 3}
+  m_Name: Ghost Minion
+  m_EditorClassIdentifier: 
+  _name: Ghost Minion
+  _level: 1
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _sprite: {fileID: 4225561543393402713, guid: 308e39dd7b2744d5e876e8427e2f797f, type: 3}
+  _currentHealth: 120
+  _maxHealth: 120
+  _currentMana: 0
+  _maxMana: 0
+  _currentShield: 0
+  _maxShield: 0
+  _attack: 20
+  _healing: 0
+  _charging: 0
+  _special: 0
+  _defending: 0
