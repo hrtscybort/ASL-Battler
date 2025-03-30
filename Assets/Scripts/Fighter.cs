@@ -22,7 +22,7 @@ namespace Assets.Scripts
         [SerializeField] private int _special;
         [SerializeField] private int _defending;
         [SerializeField] private Sprite[] _idleAnimationFrames;
-        [SerializeField] private float _animationSpeed = 0.05f;
+        [SerializeField] private float _animationSpeed = 0.35f;
 
         public string Name => _name;
         public int Level => _level;
