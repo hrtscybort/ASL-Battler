@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: daaf9a65ad5f9453f8bb983844cee48f
+guid: 764f3aa1d7c854fe391c198785d57736
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6718135520931094508
-    second: dragon-idle1_0
+      213: 3776947427089378982
+    second: ghost-idle3_0
+  - first:
+      213: -5878971573418893385
+    second: ghost-idle3_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dragon-idle1_0
+      name: ghost-idle3_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 8
-        width: 51
-        height: 42
+        x: 2
+        y: 6
+        width: 26
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +144,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 410e7f1865364c2a0800000000000000
-      internalID: -6718135520931094508
+      spriteID: 6aeecfe7ca96a6430800000000000000
+      internalID: 3776947427089378982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost-idle3_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 25
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf5fb98082b96ea0800000000000000
+      internalID: -5878971573418893385
       vertices: []
       indices: 
       edges: []
@@ -161,7 +186,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dragon-idle1_0: -6718135520931094508
+      ghost-idle3_0: 3776947427089378982
+      ghost-idle3_1: -5878971573418893385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

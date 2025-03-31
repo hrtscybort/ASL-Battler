@@ -56,8 +56,10 @@ namespace Assets.Scripts.UI
             go.transform.localScale = Vector3.one * 0.4f;
             var image = go.GetComponent<Image>();
             image.color = fighter.Color;
-            image.sprite = fighter.Sprite;
             image.preserveAspect = true;
+
+            var animator = go.AddComponent<AnimationController>();
+            animator.Initialize(fighter.IdleAnimationFrames, fighter.AnimationSpeed);
         }
 
         public void InitializeEnemy(Fighter fighter)
@@ -83,8 +85,10 @@ namespace Assets.Scripts.UI
 
             var image = go.GetComponent<Image>();
             image.color = fighter.Color;
-            image.sprite = fighter.Sprite;
             image.preserveAspect = true;
+
+            var animator = go.AddComponent<AnimationController>();
+            animator.Initialize(fighter.IdleAnimationFrames, fighter.AnimationSpeed);
         }
     }
 }

@@ -27,3 +27,8 @@ MonoBehaviour:
   _charging: 0
   _special: 0
   _defending: 0
+  _idleAnimationFrames:
+  - {fileID: -5892813892200224851, guid: c6d58c58536594f3ba973fcf924b1d89, type: 3}
+  - {fileID: -164683409668712081, guid: f33c894de60f6446b92345cf6c9d08eb, type: 3}
+  - {fileID: 8888601241827414609, guid: fbfb822c82c234c5eb5f36e4e3b644f2, type: 3}
+  _animationSpeed: 0.5

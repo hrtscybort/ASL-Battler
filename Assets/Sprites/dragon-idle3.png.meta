@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: daaf9a65ad5f9453f8bb983844cee48f
+guid: 2def32ab34daa41b9ba33792752ccf55
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6718135520931094508
-    second: dragon-idle1_0
+      213: -7216032961680869314
+    second: dragon-idle3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,12 +126,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dragon-idle1_0
+      name: dragon-idle3_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 6
         y: 8
-        width: 51
+        width: 58
         height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 410e7f1865364c2a0800000000000000
-      internalID: -6718135520931094508
+      spriteID: e387087e0408bdb90800000000000000
+      internalID: -7216032961680869314
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dragon-idle1_0: -6718135520931094508
+      dragon-idle3_0: -7216032961680869314
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

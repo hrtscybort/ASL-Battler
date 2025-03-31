@@ -16,7 +16,7 @@ MonoBehaviour:
   _level: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _sprite: {fileID: 4225561543393402713, guid: 308e39dd7b2744d5e876e8427e2f797f, type: 3}
-  _currentHealth: 120
+  _currentHealth: 95
   _maxHealth: 120
   _currentMana: 0
   _maxMana: 0
@@ -27,3 +27,9 @@ MonoBehaviour:
   _charging: 0
   _special: 0
   _defending: 0
+  _idleAnimationFrames:
+  - {fileID: 4225561543393402713, guid: 308e39dd7b2744d5e876e8427e2f797f, type: 3}
+  - {fileID: 4473930561110487492, guid: f59d90a2c257042fc8c0cb884ebc6366, type: 3}
+  - {fileID: 3776947427089378982, guid: 764f3aa1d7c854fe391c198785d57736, type: 3}
+  - {fileID: -2019757962486035249, guid: b9d092c81a41d4966a82236ee05c2c69, type: 3}
+  _animationSpeed: 0.5
