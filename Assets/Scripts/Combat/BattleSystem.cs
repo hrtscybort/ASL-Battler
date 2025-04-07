@@ -11,6 +11,7 @@ namespace Assets.Scripts.Combat
         [SerializeField] private BattleUI ui;
         [SerializeField] private Fighter player;
         [SerializeField] private Fighter[] enemyTypes;
+        
         private Fighter enemy;
 
         public Fighter Player => player;

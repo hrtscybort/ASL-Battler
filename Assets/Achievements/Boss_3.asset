@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3293eee2c54842da9fabe6e92b62a38, type: 3}
+  m_Name: Boss_3
+  m_EditorClassIdentifier: 
+  achievementID: BS_3
+  title: Boss Slayer (Bronze)
+  description: Defeat 3 Bosses
+  tier: 0
+  category: 1
+  targetValue: 3
+  isHidden: 0
+  icon: {fileID: 1708315550016971311, guid: 13deb06f6cc17458f898735a64ac4d23, type: 3}
+  isUnlocked: 0

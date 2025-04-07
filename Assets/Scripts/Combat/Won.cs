@@ -13,6 +13,13 @@ namespace Assets.Scripts.Combat
         {
             Debug.Log("Enemy defeated! Prepare for the next round...");
 
+            bool isBoss = BattleSystem.Enemy.Name.Contains("Boss");
+            string enemyType = isBoss ? "Boss" : "Monster";
+            
+            Debug.Log($"Player defeated {enemyType}: {BattleSystem.Enemy.Name}");
+
+            AchievementManager.Instance.RegisterEnemyDefeated(isBoss);
+
             yield return new WaitForSeconds(2f);
 
             BattleSystem.Interface.Initialize(BattleSystem.Player, BattleSystem.Enemy);
