@@ -11,6 +11,7 @@ namespace Assets.Scripts.Combat
         [SerializeField] private BattleUI ui;
         [SerializeField] private Fighter player;
         [SerializeField] private Fighter[] enemyTypes;
+        
         private Fighter enemy;
 
         public Fighter Player => player;
@@ -71,6 +72,28 @@ namespace Assets.Scripts.Combat
         {
 
             Interface.HidePauseMenu();
+        }
+
+        public void OnAchievementButton()
+        {
+            Interface.ShowAchievementMenu();
+        }
+
+        public void OnMenuButton()
+        {
+            Interface.MainMenu();
+        }
+
+        public void OnBackButton()
+        {
+            if (Interface.IsAchievementScreenActive())
+            {
+                Interface.HideAchievementMenu();
+            }
+            else
+            {
+                Interface.HidePauseMenu();
+            }
         }
 
         #endregion

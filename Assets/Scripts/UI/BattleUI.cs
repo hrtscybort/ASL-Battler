@@ -1,5 +1,6 @@
 ﻿﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI
 {
@@ -13,6 +14,7 @@ namespace Assets.Scripts.UI
         [SerializeField] private GameObject PauseScreen;
         [SerializeField] private GameObject ActionsAndStatus;
         [SerializeField] private Button SpecialButton;
+        [SerializeField] private GameObject AchievementScreen;
 
         public void Initialize(Fighter player, Fighter enemy)
         {
@@ -33,6 +35,7 @@ namespace Assets.Scripts.UI
         public void ShowPauseMenu()
         {
             PauseScreen.SetActive(true);
+            AchievementScreen.SetActive(false);
             ActionsAndStatus.SetActive(false);
         }
 
@@ -40,6 +43,30 @@ namespace Assets.Scripts.UI
         {
             PauseScreen.SetActive(false);
             ActionsAndStatus.SetActive(true);
+        }
+
+        public bool IsAchievementScreenActive()
+        {
+            return AchievementScreen != null && AchievementScreen.activeSelf;
+        }
+
+        public void ShowAchievementMenu()
+        {
+            AchievementScreen.SetActive(true);
+            PauseScreen.SetActive(false);
+            ActionsAndStatus.SetActive(false);
+        }
+
+        public void HideAchievementMenu()
+        {
+            AchievementScreen.SetActive(false);
+            PauseScreen.SetActive(true);
+            ActionsAndStatus.SetActive(false);
+        }
+
+        public void MainMenu()
+        {
+            SceneManager.LoadScene("Main Menu");
         }
 
         public void InitializePlayer(Fighter fighter)
