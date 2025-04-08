@@ -14,11 +14,17 @@ namespace Assets.Scripts.UI
         [SerializeField] private GameObject DefeatScreen;
         [SerializeField] private GameObject ActionsAndStatus;
         [SerializeField] private Button SpecialButton;
+        [SerializeField] private Text WaveText;
 
         public void Initialize(Fighter player, Fighter enemy)
         {
             InitializePlayer(player);
             InitializeEnemy(enemy);
+        }
+
+        public void UpdateWaveText(int wave)
+        {
+            WaveText.text = $"WAVE {wave}";
         }
 
         public void EnableSpecialButton()

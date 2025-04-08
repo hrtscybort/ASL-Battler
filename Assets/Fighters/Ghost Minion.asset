@@ -16,7 +16,7 @@ MonoBehaviour:
   _level: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _sprite: {fileID: 4225561543393402713, guid: 308e39dd7b2744d5e876e8427e2f797f, type: 3}
-  _currentHealth: 95
+  _currentHealth: 20
   _maxHealth: 120
   _currentMana: 0
   _maxMana: 0

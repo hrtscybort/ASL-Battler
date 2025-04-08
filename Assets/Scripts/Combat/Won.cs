@@ -12,6 +12,8 @@ namespace Assets.Scripts.Combat
         public override IEnumerator Start()
         {
             Debug.Log("Enemy defeated! Prepare for the next round...");
+            
+            BattleSystem.OnEnemyDefeated();
 
             yield return new WaitForSeconds(2f);
 
