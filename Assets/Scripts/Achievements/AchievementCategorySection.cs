@@ -1,48 +1,71 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
-using System.Linq;
-
 public class AchievementCategorySection : MonoBehaviour
 {
-    [SerializeField] private GameObject achievementEntryPrefab;
-    [SerializeField] private string categoryName; // Add this field to store the category name
-    
-    public void DisplayCurrentTier(List<Achievement> achievements, AchievementDisplay display)
+    [SerializeField] private AchievementEntry achievementEntryPrefab;
+    [SerializeField] private string categoryName;
+    [SerializeField] private Sprite bronzeSprite;
+    [SerializeField] private Sprite silverSprite;
+    [SerializeField] private Sprite goldSprite;
+    [SerializeField] private Sprite secretSprite;
+    [SerializeField] private Sprite lockedSprite;
+    private AchievementEntry currentEntry;
+
+    public void DisplayCurrentTier(List<Achievement> achievements)
     {
-        // Clear existing entries
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
         }
 
-        // Sort achievements by tier
-        var sortedAchievements = achievements
-            .OrderBy(a => a.tier)
-            .ToList();
+        if (achievements == null || achievements.Count == 0) 
+        {
+            Debug.LogWarning($"No achievements found for category: {categoryName}");
+            return;
+        }
 
-        Achievement highestUnlocked = sortedAchievements
-            .LastOrDefault(a => a.isUnlocked);
+        achievements.Sort((a, b) => a.tier.CompareTo(b.tier));
 
-        Achievement achievementToShow;
+        Achievement highestUnlocked = null;
+        for (int i = achievements.Count - 1; i >= 0; i--)
+        {
+            if (achievements[i].isUnlocked)
+            {
+                highestUnlocked = achievements[i];
+                break;
+            }
+        }
+
         Achievement nextTier = null;
-
         if (highestUnlocked != null)
         {
-            achievementToShow = highestUnlocked;
-            int currentIndex = sortedAchievements.IndexOf(highestUnlocked);
-            if (currentIndex < sortedAchievements.Count - 1)
+            int currentIndex = achievements.IndexOf(highestUnlocked);
+            if (currentIndex < achievements.Count - 1)
             {
-                nextTier = sortedAchievements[currentIndex + 1];
+                nextTier = achievements[currentIndex + 1];
             }
         }
         else
         {
-            achievementToShow = sortedAchievements[0];
-            nextTier = achievementToShow;
+            nextTier = achievements[0];
         }
 
-        var entry = Instantiate(achievementEntryPrefab, transform);
-        var entryScript = entry.GetComponent<AchievementEntry>();
-        entryScript.DisplayAchievement(achievementToShow, nextTier, categoryName);
+        Achievement achievementToShow = highestUnlocked ?? achievements[0];
+
+        currentEntry = Instantiate(achievementEntryPrefab, transform);
+        currentEntry.DisplayAchievement(achievementToShow, nextTier, categoryName);
+    }
+
+    private Sprite GetTierSprite(Achievement.Tier tier)
+    {
+        return tier switch
+        {
+            Achievement.Tier.Bronze => bronzeSprite,
+            Achievement.Tier.Silver => silverSprite,
+            Achievement.Tier.Gold => goldSprite,
+            Achievement.Tier.Secret => secretSprite,
+            _ => lockedSprite
+        };
     }
 }

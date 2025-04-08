@@ -74,6 +74,28 @@ namespace Assets.Scripts.Combat
             Interface.HidePauseMenu();
         }
 
+        public void OnAchievementButton()
+        {
+            Interface.ShowAchievementMenu();
+        }
+
+        public void OnMenuButton()
+        {
+            Interface.MainMenu();
+        }
+
+        public void OnBackButton()
+        {
+            if (Interface.IsAchievementScreenActive())
+            {
+                Interface.HideAchievementMenu();
+            }
+            else
+            {
+                Interface.HidePauseMenu();
+            }
+        }
+
         #endregion
     }
 }

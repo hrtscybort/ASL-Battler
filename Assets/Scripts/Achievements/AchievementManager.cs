@@ -1,20 +1,31 @@
-// AchievementManager.cs
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
+    #region Variables
     public static AchievementManager Instance { get; private set; }
 
     [SerializeField] private List<Achievement> allAchievements;
+    [SerializeField] private AchievementPopup popupPrefab;
+    [SerializeField] private Sprite bronzeIcon;
+    [SerializeField] private Sprite silverIcon;
+    [SerializeField] private Sprite goldIcon;
+    [SerializeField] private Sprite secretIcon;
+
+    private AchievementPopup activePopup;
     private Dictionary<string, Achievement> achievementsDict = new Dictionary<string, Achievement>();
+    private const string SAVE_PREFIX = "ACH_";
+    private const string PROGRESS_PREFIX = "PROG_";
 
     // Player progress tracking
     private int totalMonstersKilled = 0;
     private int totalBossesKilled = 0;
-    // private int totalPerfectSigns = 0;
-    // private int currentPerfectCombo = 0;
-    // private int maxPerfectCombo = 0;
+    private int totalPerfectSigns = 0;
+    private int currentPerfectCombo = 0;
+    private int maxPerfectCombo = 0;
+
+    #endregion
 
     private void Awake()
     {
@@ -26,16 +37,57 @@ public class AchievementManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        
+        if (popupPrefab != null && activePopup == null)
+        {
+            Canvas canvas = FindFirstObjectByType<Canvas>();
+            if (canvas != null)
+            {
+                activePopup = Instantiate(popupPrefab, canvas.transform);
+                activePopup.gameObject.SetActive(false);
+            }
+        }
 
         InitializeAchievements();
+        LoadAchievements();
     }
 
     private void InitializeAchievements()
     {
         foreach (var achievement in allAchievements)
         {
+            if (string.IsNullOrEmpty(achievement.achievementID))
+            {
+                Debug.LogError("Achievement missing ID!");
+                continue;
+            }
+            
+            if (achievementsDict.ContainsKey(achievement.achievementID))
+            {
+                Debug.LogError($"Duplicate achievement ID: {achievement.achievementID}");
+                continue;
+            }
+            
             achievementsDict.Add(achievement.achievementID, achievement);
+            achievement.OnUnlocked += HandleAchievementUnlocked;
         }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var achievement in allAchievements)
+        {
+            achievement.OnUnlocked -= HandleAchievementUnlocked;
+        }
+    }
+
+    #region Achievement Logic
+
+    private void HandleAchievementUnlocked(Achievement achievement)
+    {
+        SaveAchievements(); // Immediate save on unlock
+        ShowAchievementPopup(achievement);
+        UpdateAchievementsUI();
     }
 
     public void RegisterEnemyDefeated(bool isBoss)
@@ -53,7 +105,7 @@ public class AchievementManager : MonoBehaviour
 
         CheckAllAchievements();
     }
-/*
+
     public void RegisterPerfectSign(bool isPerfect)
     {
         if (isPerfect)
@@ -74,7 +126,7 @@ public class AchievementManager : MonoBehaviour
 
         CheckAllAchievements();
     }
-*/
+
     private void CheckMonsterHunterAchievements()
     {
         CheckAchievementProgress("MH_5", totalMonstersKilled);
@@ -90,7 +142,7 @@ public class AchievementManager : MonoBehaviour
         CheckAchievementProgress("BS_15", totalBossesKilled);
         CheckAchievementProgress("BS_25", totalBossesKilled);
     }
-/*
+
     private void CheckSignWizardAchievements()
     {
         CheckAchievementProgress("SW_5", totalPerfectSigns);
@@ -106,7 +158,7 @@ public class AchievementManager : MonoBehaviour
         CheckAchievementProgress("CS_10", maxPerfectCombo);
         CheckAchievementProgress("CS_20", maxPerfectCombo);
     }
-*/
+
     private void CheckAllAchievements()
     {
         CheckTierAchievements(Achievement.Tier.Bronze);
@@ -131,13 +183,29 @@ public class AchievementManager : MonoBehaviour
 
         if (unlockedCount == totalCount && totalCount > 0)
         {
-            string achievementID = $"ALL_{tier.ToString().ToUpper()}";
+            string achievementID = $"ALL_{tier.ToString()}";
             if (achievementsDict.ContainsKey(achievementID))
             {
                 UnlockAchievement(achievementID);
             }
         }
     }
+
+    public void UpdateAchievementsUI()
+    {
+        AchievementDisplay display = FindFirstObjectByType<AchievementDisplay>();
+        
+        if (display != null)
+        {
+            display.RefreshAllAchievements();
+        }
+        else
+        {
+            Debug.LogWarning("AchievementDisplay not found in scene");
+        }
+    }
+
+    #endregion
 
     private void CheckAchievementProgress(string achievementID, int currentValue)
     {
@@ -149,45 +217,83 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
-
-    private void UnlockAchievement(string achievementID)
+    public List<Achievement> GetAllAchievements()
     {
-        if (achievementsDict.TryGetValue(achievementID, out Achievement achievement))
-        {
-            achievement.isUnlocked = true;
-            ShowAchievementPopup(achievement);
-            SaveAchievements();
-        }
+        return allAchievements;
     }
 
     private void ShowAchievementPopup(Achievement achievement)
     {
         Debug.Log($"Achievement Unlocked: {achievement.title} - {achievement.description}");
         
-        // Example: Instantiate a popup prefab with achievement details
-        // AchievementPopup.Show(achievement);
+        if (activePopup == null) return;
+    
+        Sprite tierSprite = achievement.tier switch
+        {
+            Achievement.Tier.Bronze => bronzeIcon,
+            Achievement.Tier.Silver => silverIcon,
+            Achievement.Tier.Gold => goldIcon,
+            Achievement.Tier.Secret => secretIcon,
+                _ => bronzeIcon
+        };
+
+        activePopup.Show(achievement, tierSprite);
+    }
+
+    #region Player Prefs
+    private void LoadAchievements()
+    {
+        foreach (Achievement achievement in allAchievements)
+        {
+            achievement.isUnlocked = 
+                PlayerPrefs.GetInt(SAVE_PREFIX + achievement.achievementID, 0) == 1;
+        }
+        
+        totalMonstersKilled = PlayerPrefs.GetInt(PROGRESS_PREFIX + "MONSTER_KILLS", 0);
+        totalBossesKilled = PlayerPrefs.GetInt(PROGRESS_PREFIX + "BOSS_KILLS", 0);
+
+        Debug.Log(totalBossesKilled);
+        Debug.Log(totalMonstersKilled);
     }
 
     private void SaveAchievements()
     {
-        // Implement saving to PlayerPrefs or your save system
-        foreach (var achievement in allAchievements)
+        foreach (Achievement achievement in allAchievements)
         {
-            PlayerPrefs.SetInt(achievement.achievementID, achievement.isUnlocked ? 1 : 0);
+            PlayerPrefs.SetInt(SAVE_PREFIX + achievement.achievementID, 
+                            achievement.isUnlocked ? 1 : 0);
         }
+        
+        PlayerPrefs.SetInt(PROGRESS_PREFIX + "MONSTER_KILLS", totalMonstersKilled);
+        PlayerPrefs.SetInt(PROGRESS_PREFIX + "BOSS_KILLS", totalBossesKilled);
+        
         PlayerPrefs.Save();
     }
 
-    private void LoadAchievements()
+    private void UnlockAchievement(string achievementID)
     {
-        foreach (var achievement in allAchievements)
+        if (achievementsDict.TryGetValue(achievementID, out Achievement achievement))
         {
-            achievement.isUnlocked = PlayerPrefs.GetInt(achievement.achievementID, 0) == 1;
+            if (!achievement.isUnlocked)
+            {
+                achievement.Unlock();
+                PlayerPrefs.SetInt(SAVE_PREFIX + achievementID, 1);
+                PlayerPrefs.Save();
+                ShowAchievementPopup(achievement);
+            }
         }
     }
 
-    public List<Achievement> GetAllAchievements()
+    // save triggers
+    private void OnApplicationPause(bool pauseStatus)
     {
-        return allAchievements;
+        if (pauseStatus) SaveAchievements();
     }
+
+    private void OnApplicationQuit()
+    {
+        SaveAchievements();
+    }
+
+    #endregion
 }

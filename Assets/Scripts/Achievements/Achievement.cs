@@ -22,4 +22,11 @@ public class Achievement : ScriptableObject
     public bool isHidden;
     public Sprite icon;
     public bool isUnlocked;
+
+    public System.Action<Achievement> OnUnlocked;
+    public void Unlock()
+    {
+        isUnlocked = true;
+        OnUnlocked?.Invoke(this);
+    }
 }

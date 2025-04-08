@@ -4,19 +4,29 @@ using TMPro;
 
 public class AchievementEntry : MonoBehaviour
 {
-    [Header("References")]
     [SerializeField] private TMP_Text categoryTitle;
     [SerializeField] private TMP_Text earnedDescription;
     [SerializeField] private TMP_Text nextTierDescription;
     [SerializeField] private Image tierIcon;
 
-    [Header("Tier Sprites")]
     [SerializeField] private Sprite bronzeSprite;
     [SerializeField] private Sprite silverSprite;
     [SerializeField] private Sprite goldSprite;
     [SerializeField] private Sprite secretSprite;
     [SerializeField] private Sprite lockedSprite;
 
+    private Sprite GetTierSprite(Achievement.Tier tier)
+    {
+        return tier switch
+        {
+            Achievement.Tier.Bronze => bronzeSprite,
+            Achievement.Tier.Silver => silverSprite,
+            Achievement.Tier.Gold => goldSprite,
+            Achievement.Tier.Secret => secretSprite,
+            _ => lockedSprite
+        };
+    }
+    
     public void DisplayAchievement(Achievement current, Achievement next, string categoryName)
     {
         categoryTitle.text = categoryName.ToUpper();
@@ -32,7 +42,7 @@ public class AchievementEntry : MonoBehaviour
             tierIcon.sprite = lockedSprite;
         }
         
-        if (next != null)
+        if (next != null && next != current)
         {
             nextTierDescription.text = $"Next: {next.description} ({next.tier})";
         }
@@ -40,17 +50,5 @@ public class AchievementEntry : MonoBehaviour
         {
             nextTierDescription.text = "Highest Tier Earned";
         }
-    }
-
-    private Sprite GetTierSprite(Achievement.Tier tier)
-    {
-        return tier switch
-        {
-            Achievement.Tier.Bronze => bronzeSprite,
-            Achievement.Tier.Silver => silverSprite,
-            Achievement.Tier.Gold => goldSprite,
-            Achievement.Tier.Secret => secretSprite,
-            _ => lockedSprite
-        };
     }
 }

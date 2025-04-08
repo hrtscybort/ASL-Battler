@@ -1,68 +1,68 @@
 using UnityEngine;
-using System.Linq;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 public class AchievementDisplay : MonoBehaviour
 {
-    [Header("Category Sections")]
     [SerializeField] private AchievementCategorySection monsterHunterSection;
     [SerializeField] private AchievementCategorySection bossSlayerSection;
     [SerializeField] private AchievementCategorySection signWizardSection;
     [SerializeField] private AchievementCategorySection comboSignerSection;
     [SerializeField] private AchievementCategorySection allAchievementsSection;
 
-    [Header("Tier Icons")]
-    [SerializeField] private Sprite bronzeIcon;
-    [SerializeField] private Sprite silverIcon;
-    [SerializeField] private Sprite goldIcon;
-    [SerializeField] private Sprite secretIcon;
-    [SerializeField] private Sprite lockedIcon;
+    private Dictionary<Achievement.Category, AchievementCategorySection> categorySections;
 
-    private void OnEnable()
+    private void Start()
     {
+        categorySections = new Dictionary<Achievement.Category, AchievementCategorySection>()
+        {
+            { Achievement.Category.MonsterHunter, monsterHunterSection },
+            { Achievement.Category.BossSlayer, bossSlayerSection },
+            { Achievement.Category.SignWizard, signWizardSection },
+            { Achievement.Category.ComboSigner, comboSignerSection },
+            { Achievement.Category.AllAchievements, allAchievementsSection }
+        };
+
         RefreshAllAchievements();
     }
 
+    private void OnEnable()
+    {
+        if (categorySections != null)
+            RefreshAllAchievements();
+    }
     public void RefreshAllAchievements()
     {
+        if (AchievementManager.Instance == null)
+        {
+            Debug.LogWarning("AchievementManager not initialized");
+            return;
+        }
+
+        var sections = new (Achievement.Category, AchievementCategorySection)[]
+        {
+            (Achievement.Category.MonsterHunter, monsterHunterSection),
+            (Achievement.Category.BossSlayer, bossSlayerSection),
+            (Achievement.Category.SignWizard, signWizardSection),
+            (Achievement.Category.ComboSigner, comboSignerSection),
+            (Achievement.Category.AllAchievements, allAchievementsSection)
+        };
+
         var allAchievements = AchievementManager.Instance.GetAllAchievements();
         
-        monsterHunterSection.DisplayCurrentTier(
-            allAchievements.Where(a => a.category == Achievement.Category.MonsterHunter).ToList(),
-            this
-        );
-        
-        bossSlayerSection.DisplayCurrentTier(
-            allAchievements.Where(a => a.category == Achievement.Category.BossSlayer).ToList(),
-            this
-        );
-        
-        signWizardSection.DisplayCurrentTier(
-            allAchievements.Where(a => a.category == Achievement.Category.SignWizard).ToList(),
-            this
-        );
-        
-        comboSignerSection.DisplayCurrentTier(
-            allAchievements.Where(a => a.category == Achievement.Category.ComboSigner).ToList(),
-            this
-        );
-        
-        allAchievementsSection.DisplayCurrentTier(
-            allAchievements.Where(a => a.category == Achievement.Category.AllAchievements).ToList(),
-            this
-        );
-    }
-
-    public Sprite GetTierIcon(Achievement.Tier tier, bool isUnlocked)
-    {
-        if (!isUnlocked) return lockedIcon;
-        
-        return tier switch
+        foreach (var (category, section) in sections)
         {
-            Achievement.Tier.Bronze => bronzeIcon,
-            Achievement.Tier.Silver => silverIcon,
-            Achievement.Tier.Gold => goldIcon,
-            Achievement.Tier.Secret => secretIcon,
-            _ => lockedIcon
-        };
+            if (section == null) continue;
+            
+            var categoryAchievements = new List<Achievement>();
+            foreach (var achievement in allAchievements)
+            {
+                if (achievement.category == category)
+                    categoryAchievements.Add(achievement);
+            }
+            
+            section.DisplayCurrentTier(categoryAchievements);
+        }
     }
 }
