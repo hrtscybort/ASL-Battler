@@ -1,6 +1,7 @@
 using System.Collections;
 using Assets.Scripts.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Combat
 {
@@ -71,6 +72,11 @@ namespace Assets.Scripts.Combat
         {
 
             Interface.HidePauseMenu();
+        }
+
+        public void OnMainMenuButton()
+        {
+            SceneManager.LoadScene("Main Menu");
         }
 
         #endregion
