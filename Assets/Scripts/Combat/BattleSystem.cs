@@ -64,19 +64,22 @@ namespace Assets.Scripts.Combat
 
         public void OnPauseButton()
         {
-
             Interface.ShowPauseMenu();
         }
 
         public void OnResumeButton()
         {
-
             Interface.HidePauseMenu();
         }
 
         public void OnMainMenuButton()
         {
             SceneManager.LoadScene("Main Menu");
+        }
+
+        public void OnRestartButton()
+        {
+            SceneManager.LoadScene("Main");
         }
 
         #endregion

@@ -11,6 +11,7 @@ namespace Assets.Scripts.UI
         [SerializeField] private StatusDisplay playerStatusDisplay;
         [SerializeField] private StatusDisplay enemyStatusDisplay;
         [SerializeField] private GameObject PauseScreen;
+        [SerializeField] private GameObject DefeatScreen;
         [SerializeField] private GameObject ActionsAndStatus;
         [SerializeField] private Button SpecialButton;
 
@@ -40,6 +41,12 @@ namespace Assets.Scripts.UI
         {
             PauseScreen.SetActive(false);
             ActionsAndStatus.SetActive(true);
+        }
+
+        public void ShowDefeatScreen()
+        {
+            DefeatScreen.SetActive(true);
+            ActionsAndStatus.SetActive(false);
         }
 
         public void InitializePlayer(Fighter fighter)

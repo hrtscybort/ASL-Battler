@@ -12,6 +12,7 @@ namespace Assets.Scripts.Combat
         public override IEnumerator Start()
         {
             Debug.Log("You were defeated.");
+            BattleSystem.Interface.ShowDefeatScreen();
             yield break;
         }
     }
