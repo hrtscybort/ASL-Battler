@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b925861f7d6544ab8f483f92eb66114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementEntryPrefab: {fileID: 599463400}
+  achievementEntryPrefab: {fileID: 530117383}
   categoryName: Combo Signer
   bronzeSprite: {fileID: 0}
   silverSprite: {fileID: 0}
@@ -1176,6 +1176,11 @@ MonoBehaviour:
   goldSprite: {fileID: -2025079244490526898, guid: 6e4e0eb755c4442f983575dfc74e6c52, type: 3}
   secretSprite: {fileID: 4018360891430564266, guid: a83cc7e9da34047899f3c78b02f210e4, type: 3}
   lockedSprite: {fileID: -5905770549577066440, guid: 8337ef6a0334e4cd79aa7529d000564a, type: 3}
+--- !u!1 &530117383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 146677171101995235, guid: db65db10876ae44f78c5529ab55ad983, type: 3}
+  m_PrefabInstance: {fileID: 427780850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &552546222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,17 +1394,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592127792}
   m_CullTransparentMesh: 0
---- !u!114 &599463400 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -8184541559078571885, guid: db65db10876ae44f78c5529ab55ad983, type: 3}
-  m_PrefabInstance: {fileID: 427780850}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2cba68e687c04253920fa6664538766, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &619215399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1429,11 @@ RectTransform:
   m_AnchoredPosition: {x: -85, y: 315}
   m_SizeDelta: {x: 16, y: 16}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &660349098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 146677171101995235, guid: db65db10876ae44f78c5529ab55ad983, type: 3}
+  m_PrefabInstance: {fileID: 1401738753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &680325596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,7 +1761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b925861f7d6544ab8f483f92eb66114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementEntryPrefab: {fileID: 52044584}
+  achievementEntryPrefab: {fileID: 52044583}
   categoryName: Monster Hunter
   bronzeSprite: {fileID: 0}
   silverSprite: {fileID: 0}
@@ -1818,6 +1817,8 @@ GameObject:
   - component: {fileID: 882283828}
   - component: {fileID: 882283830}
   - component: {fileID: 882283829}
+  - component: {fileID: 882283831}
+  - component: {fileID: 882283832}
   m_Layer: 5
   m_Name: Achievement Screen
   m_TagString: Untagged
@@ -1885,6 +1886,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882283827}
   m_CullTransparentMesh: 1
+--- !u!114 &882283831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882283827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290914c52baf14ed7accb6ad073662f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!223 &882283832
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882283827}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &904836618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,7 +2010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b925861f7d6544ab8f483f92eb66114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementEntryPrefab: {fileID: 450125049}
+  achievementEntryPrefab: {fileID: 450125048}
   categoryName: Sign Wizard
   bronzeSprite: {fileID: 0}
   silverSprite: {fileID: 0}
@@ -2612,7 +2648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b925861f7d6544ab8f483f92eb66114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementEntryPrefab: {fileID: 2083390817}
+  achievementEntryPrefab: {fileID: 660349098}
   categoryName: Achievement Collector
   bronzeSprite: {fileID: 0}
   silverSprite: {fileID: 0}
@@ -2767,6 +2803,8 @@ GameObject:
   - component: {fileID: 1214011048}
   - component: {fileID: 1214011047}
   - component: {fileID: 1214011049}
+  - component: {fileID: 1214011051}
+  - component: {fileID: 1214011050}
   m_Layer: 5
   m_Name: Achievements Panel
   m_TagString: Untagged
@@ -2850,6 +2888,41 @@ MonoBehaviour:
   signWizardSection: {fileID: 904836622}
   comboSignerSection: {fileID: 334151790}
   allAchievementsSection: {fileID: 1131543078}
+--- !u!114 &1214011050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214011045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290914c52baf14ed7accb6ad073662f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!223 &1214011051
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214011045}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!850595691 &1318687327
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -3578,7 +3651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 406.1, y: -30}
+  m_AnchoredPosition: {x: 433, y: -30}
   m_SizeDelta: {x: 35.7334, y: 33.75}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1434155342
@@ -5027,13 +5100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b925861f7d6544ab8f483f92eb66114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementEntryPrefab: {fileID: 684753202}
+  achievementEntryPrefab: {fileID: 684753201}
   categoryName: Boss Slayer
-  bronzeSprite: {fileID: 0}
-  silverSprite: {fileID: 0}
-  goldSprite: {fileID: 0}
-  secretSprite: {fileID: 0}
-  lockedSprite: {fileID: 0}
+  bronzeSprite: {fileID: 1708315550016971311, guid: 13deb06f6cc17458f898735a64ac4d23, type: 3}
+  silverSprite: {fileID: 8436042316626964991, guid: 8b2c1ade0a0874c5ba3b25f5f93e394a, type: 3}
+  goldSprite: {fileID: -2025079244490526898, guid: 6e4e0eb755c4442f983575dfc74e6c52, type: 3}
+  secretSprite: {fileID: 4018360891430564266, guid: a83cc7e9da34047899f3c78b02f210e4, type: 3}
+  lockedSprite: {fileID: -5905770549577066440, guid: 8337ef6a0334e4cd79aa7529d000564a, type: 3}
 --- !u!1 &1945552061
 GameObject:
   m_ObjectHideFlags: 0
@@ -5336,17 +5409,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010026800}
   m_CullTransparentMesh: 1
---- !u!114 &2083390817 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -8184541559078571885, guid: db65db10876ae44f78c5529ab55ad983, type: 3}
-  m_PrefabInstance: {fileID: 1401738753}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2cba68e687c04253920fa6664538766, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7404430277474043585
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class AchievementEntry : MonoBehaviour
 {
@@ -15,6 +16,27 @@ public class AchievementEntry : MonoBehaviour
     [SerializeField] private Sprite secretSprite;
     [SerializeField] private Sprite lockedSprite;
 
+
+    private void Start()
+    {
+        StartCoroutine(ActivateComponentsWithDelay());
+    }
+
+    private IEnumerator ActivateComponentsWithDelay()
+    {
+        // Wait for the end of the frame before activating components
+        yield return null;
+
+        // Now, activate the components
+        if (categoryTitle != null) categoryTitle.gameObject.SetActive(true);
+        if (earnedDescription != null) earnedDescription.gameObject.SetActive(true);
+        if (nextTierDescription != null) nextTierDescription.gameObject.SetActive(true);
+        if (tierIcon != null) tierIcon.gameObject.SetActive(true);
+
+        // Force layout rebuild after activation
+        LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
+    }
+    
     private Sprite GetTierSprite(Achievement.Tier tier)
     {
         return tier switch
@@ -26,7 +48,7 @@ public class AchievementEntry : MonoBehaviour
             _ => lockedSprite
         };
     }
-    
+
     public void DisplayAchievement(Achievement current, Achievement next, string categoryName)
     {
         categoryTitle.text = categoryName.ToUpper();
