@@ -129,12 +129,12 @@ TextureImporter:
       name: dragon-idle1_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 8
-        width: 51
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.50939614, y: 0.4999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 64173b790b1694e26b4eff31805bfbbc
     internalID: 0
     vertices: []
     indices: 
