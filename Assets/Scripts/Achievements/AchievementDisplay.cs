@@ -1,68 +1,76 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.Collections.Generic;
+using System.Linq;
 
 public class AchievementDisplay : MonoBehaviour
 {
-    [SerializeField] private AchievementCategorySection monsterHunterSection;
-    [SerializeField] private AchievementCategorySection bossSlayerSection;
-    [SerializeField] private AchievementCategorySection signWizardSection;
-    [SerializeField] private AchievementCategorySection comboSignerSection;
-    [SerializeField] private AchievementCategorySection allAchievementsSection;
-
-    private Dictionary<Achievement.Category, AchievementCategorySection> categorySections;
-
-    private void Start()
+    [System.Serializable]
+    public class CategorySection
     {
-        categorySections = new Dictionary<Achievement.Category, AchievementCategorySection>()
-        {
-            { Achievement.Category.MonsterHunter, monsterHunterSection },
-            { Achievement.Category.BossSlayer, bossSlayerSection },
-            { Achievement.Category.SignWizard, signWizardSection },
-            { Achievement.Category.ComboSigner, comboSignerSection },
-            { Achievement.Category.AllAchievements, allAchievementsSection }
-        };
-
-        RefreshAllAchievements();
+        public Achievement.Category category;
+        public AchievementCategorySection section;
     }
 
-    private void OnEnable()
-    {
-        if (categorySections != null)
-            RefreshAllAchievements();
-    }
+    [SerializeField] private List<CategorySection> categorySections;
+    [SerializeField] private GameObject entryPrefab;
+
+    private void OnEnable() => RefreshAllAchievements();
+
     public void RefreshAllAchievements()
     {
-        if (AchievementManager.Instance == null)
-        {
-            Debug.LogWarning("AchievementManager not initialized");
-            return;
-        }
-
-        var sections = new (Achievement.Category, AchievementCategorySection)[]
-        {
-            (Achievement.Category.MonsterHunter, monsterHunterSection),
-            (Achievement.Category.BossSlayer, bossSlayerSection),
-            (Achievement.Category.SignWizard, signWizardSection),
-            (Achievement.Category.ComboSigner, comboSignerSection),
-            (Achievement.Category.AllAchievements, allAchievementsSection)
-        };
+        if (!AchievementManager.Instance) return;
 
         var allAchievements = AchievementManager.Instance.GetAllAchievements();
         
-        foreach (var (category, section) in sections)
+        foreach (var categorySection in categorySections)
         {
-            if (section == null) continue;
+            if (!categorySection.section) continue;
             
-            var categoryAchievements = new List<Achievement>();
-            foreach (var achievement in allAchievements)
-            {
-                if (achievement.category == category)
-                    categoryAchievements.Add(achievement);
-            }
-            
-            section.DisplayCurrentTier(categoryAchievements);
+            var achievements = allAchievements
+                .Where(a => a.category == categorySection.category)
+                .ToList();
+
+            DisplayHighestAchievement(achievements, categorySection.section);
         }
+    }
+
+    private void DisplayHighestAchievement(List<Achievement> achievements, AchievementCategorySection section)
+    {
+        section.ClearEntries();
+        if (achievements.Count == 0) return;
+
+        // Your original exact logic
+        achievements.Sort((a, b) => a.tier.CompareTo(b.tier));
+
+        Achievement highestUnlocked = null;
+        for (int i = achievements.Count - 1; i >= 0; i--)
+        {
+            if (achievements[i].isUnlocked)
+            {
+                highestUnlocked = achievements[i];
+                break;
+            }
+        }
+
+        Achievement nextTier = null;
+        if (highestUnlocked != null)
+        {
+            int currentIndex = achievements.IndexOf(highestUnlocked);
+            if (currentIndex < achievements.Count - 1)
+            {
+                nextTier = achievements[currentIndex + 1];
+            }
+        }
+        else
+        {
+            nextTier = achievements[0];
+        }
+
+        Achievement achievementToShow = highestUnlocked ?? achievements[0];
+
+        var entry = Instantiate(entryPrefab, section.GetEntriesContainer())
+            .GetComponent<AchievementEntry>();
+            
+        entry?.DisplayAchievement(achievementToShow, nextTier, section.GetCategoryName());
     }
 }

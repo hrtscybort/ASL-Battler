@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -4.7335, y: 0}
+  m_SizeDelta: {x: 197.8239, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &-8184541559078571885
 MonoBehaviour:
@@ -52,15 +52,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cba68e687c04253920fa6664538766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  categoryTitle: {fileID: 0}
-  earnedDescription: {fileID: 0}
-  nextTierDescription: {fileID: 0}
-  tierIcon: {fileID: 0}
-  bronzeSprite: {fileID: 0}
-  silverSprite: {fileID: 0}
-  goldSprite: {fileID: 0}
-  secretSprite: {fileID: 0}
-  lockedSprite: {fileID: 0}
+  categoryTitle: {fileID: 8992770691918103192}
+  earnedDescription: {fileID: 2230294286625880221}
+  nextTierDescription: {fileID: 5927439684274800130}
+  tierIcon: {fileID: 1491264746078521206}
+  bronzeSprite: {fileID: 1708315550016971311, guid: 13deb06f6cc17458f898735a64ac4d23, type: 3}
+  silverSprite: {fileID: 8436042316626964991, guid: 8b2c1ade0a0874c5ba3b25f5f93e394a, type: 3}
+  goldSprite: {fileID: -2025079244490526898, guid: 6e4e0eb755c4442f983575dfc74e6c52, type: 3}
+  secretSprite: {fileID: 4018360891430564266, guid: a83cc7e9da34047899f3c78b02f210e4, type: 3}
+  lockedSprite: {fileID: -5905770549577066440, guid: 8337ef6a0334e4cd79aa7529d000564a, type: 3}
 --- !u!1 &4561127696714271252
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Monster Hunter
+  m_text: Achievement Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa79e4dbd789e4d19b21ad7d3c02fd77, type: 2}
   m_sharedMaterial: {fileID: -517160690255019705, guid: aa79e4dbd789e4d19b21ad7d3c02fd77, type: 2}
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -13.554435, z: 0, w: 27.560661}
+  m_margin: {x: 0, y: -13.554435, z: -31.556152, w: 27.560661}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Next: Defeat 5 monsters
+  m_text: 'Next: Next Tier Description
 
 '
   m_isRightToLeft: 0
