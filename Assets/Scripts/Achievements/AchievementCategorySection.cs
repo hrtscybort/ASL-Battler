@@ -3,15 +3,18 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 public class AchievementCategorySection : MonoBehaviour
 {
-    [SerializeField] private AchievementEntry achievementEntryPrefab;
+    [SerializeField] private GameObject achievementEntryPrefab;
     [SerializeField] private string categoryName;
-    [SerializeField] private Sprite bronzeSprite;
-    [SerializeField] private Sprite silverSprite;
-    [SerializeField] private Sprite goldSprite;
-    [SerializeField] private Sprite secretSprite;
-    [SerializeField] private Sprite lockedSprite;
     private AchievementEntry currentEntry;
 
+    private void Awake()
+    {
+        if (achievementEntryPrefab != null && 
+            achievementEntryPrefab.GetComponent<AchievementEntry>() == null)
+        {
+            Debug.LogError($"Prefab for {categoryName} is missing AchievementEntry component!");
+        }
+    }
     public void DisplayCurrentTier(List<Achievement> achievements)
     {
         foreach (Transform child in transform)
@@ -19,7 +22,7 @@ public class AchievementCategorySection : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        if (achievements == null || achievements.Count == 0) 
+        if (achievements == null || achievements.Count == 0)
         {
             Debug.LogWarning($"No achievements found for category: {categoryName}");
             return;
@@ -37,35 +40,22 @@ public class AchievementCategorySection : MonoBehaviour
             }
         }
 
-        Achievement nextTier = null;
-        if (highestUnlocked != null)
-        {
-            int currentIndex = achievements.IndexOf(highestUnlocked);
-            if (currentIndex < achievements.Count - 1)
-            {
-                nextTier = achievements[currentIndex + 1];
-            }
-        }
-        else
-        {
-            nextTier = achievements[0];
-        }
+        Achievement nextTier = highestUnlocked != null 
+            ? achievements[achievements.IndexOf(highestUnlocked) + 1] 
+            : achievements[0];
 
         Achievement achievementToShow = highestUnlocked ?? achievements[0];
 
-        currentEntry = Instantiate(achievementEntryPrefab, transform);
-        currentEntry.DisplayAchievement(achievementToShow, nextTier, categoryName);
-    }
+        var entryObj = Instantiate(achievementEntryPrefab, transform);
+        currentEntry = entryObj.GetComponent<AchievementEntry>();
+        entryObj.SetActive(true);
 
-    private Sprite GetTierSprite(Achievement.Tier tier)
-    {
-        return tier switch
+        if (currentEntry == null)
         {
-            Achievement.Tier.Bronze => bronzeSprite,
-            Achievement.Tier.Silver => silverSprite,
-            Achievement.Tier.Gold => goldSprite,
-            Achievement.Tier.Secret => secretSprite,
-            _ => lockedSprite
-        };
+            Debug.LogError("Missing AchievementEntry component!", entryObj);
+            return;
+        }
+
+        currentEntry.DisplayAchievement(achievementToShow, nextTier, categoryName);
     }
 }
