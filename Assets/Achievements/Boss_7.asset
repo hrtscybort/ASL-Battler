@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss_7
   m_EditorClassIdentifier: 
   achievementID: BS_7
-  title: Boss Slayer (Silver)
+  title: Boss Slayer
   description: Defeat 7 Bosses
   tier: 1
   category: 1

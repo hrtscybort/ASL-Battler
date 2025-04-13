@@ -39,7 +39,6 @@ public class AchievementDisplay : MonoBehaviour
         section.ClearEntries();
         if (achievements.Count == 0) return;
 
-        // Your original exact logic
         achievements.Sort((a, b) => a.tier.CompareTo(b.tier));
 
         Achievement highestUnlocked = null;

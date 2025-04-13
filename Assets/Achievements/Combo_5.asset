@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Combo_5
   m_EditorClassIdentifier: 
   achievementID: CS_5
-  title: Combo Signer (Silver)
+  title: 'Combo Signer '
   description: 5x Perfect in a Row
   tier: 1
   category: 3

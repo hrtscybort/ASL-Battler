@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Combo_3
   m_EditorClassIdentifier: 
   achievementID: CS_3
-  title: Combo Signer (Bronze)
+  title: Combo Signer
   description: 3x Perfect in a Row
   tier: 0
   category: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: All_Gold
   m_EditorClassIdentifier: 
   achievementID: ALL_GOLD
-  title: Achievement Collector (Gold)
+  title: Achievement Collector
   description: Collect All Gold Achievements
   tier: 2
   category: 4

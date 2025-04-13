@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Boss_3
   m_EditorClassIdentifier: 
   achievementID: BS_3
-  title: Boss Slayer (Bronze)
+  title: Boss Slayer
   description: Defeat 3 Bosses
   tier: 0
   category: 1
   targetValue: 3
   isHidden: 0
   icon: {fileID: 1708315550016971311, guid: 13deb06f6cc17458f898735a64ac4d23, type: 3}
-  isUnlocked: 0
+  isUnlocked: 1
