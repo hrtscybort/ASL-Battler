@@ -111,6 +111,26 @@ namespace Assets.Scripts.Combat
         public void OnRestartButton()
         {
             SceneManager.LoadScene("Main");
+        public void OnAchievementButton()
+        {
+            Interface.ShowAchievementMenu();
+        }
+
+        public void OnMenuButton()
+        {
+            Interface.MainMenu();
+        }
+
+        public void OnBackButton()
+        {
+            if (Interface.IsAchievementScreenActive())
+            {
+                Interface.HideAchievementMenu();
+            }
+            else
+            {
+                Interface.HidePauseMenu();
+            }
         }
 
         #endregion
