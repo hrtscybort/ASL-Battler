@@ -12,14 +12,21 @@ namespace Assets.Scripts.UI
         [SerializeField] private StatusDisplay playerStatusDisplay;
         [SerializeField] private StatusDisplay enemyStatusDisplay;
         [SerializeField] private GameObject PauseScreen;
+        [SerializeField] private GameObject DefeatScreen;
         [SerializeField] private GameObject ActionsAndStatus;
         [SerializeField] private Button SpecialButton;
         [SerializeField] private GameObject AchievementScreen;
+        [SerializeField] private Text WaveText;
 
         public void Initialize(Fighter player, Fighter enemy)
         {
             InitializePlayer(player);
             InitializeEnemy(enemy);
+        }
+
+        public void UpdateWaveText(int wave)
+        {
+            WaveText.text = $"WAVE {wave}";
         }
 
         public void EnableSpecialButton()
@@ -30,6 +37,12 @@ namespace Assets.Scripts.UI
         public void DisableSpecialButton()
         {
             SpecialButton.interactable = false;
+        }
+
+        public void ShowDefeatScreen()
+        {
+            DefeatScreen.SetActive(true);
+            ActionsAndStatus.SetActive(false);
         }
 
         public void ShowPauseMenu()

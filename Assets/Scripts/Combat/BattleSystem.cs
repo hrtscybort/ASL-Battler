@@ -1,6 +1,7 @@
 using System.Collections;
 using Assets.Scripts.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Combat
 {
@@ -10,14 +11,20 @@ namespace Assets.Scripts.Combat
 
         [SerializeField] private BattleUI ui;
         [SerializeField] private Fighter player;
-        [SerializeField] private Fighter[] enemyTypes;
-        
+        [SerializeField] private Fighter[] minionTypes;
+        [SerializeField] private Fighter bossType;
+
         private Fighter enemy;
+        private int currentWave = 0;
+        private int currentEnemyIndex = 0;
+        private Fighter[] currentWaveEnemies;
 
         public Fighter Player => player;
         public Fighter Enemy => enemy;
-        public Fighter[] EnemyTypes => enemyTypes;
+        public Fighter[] MinionTypes => minionTypes;
+        public Fighter BossType => bossType;
         public BattleUI Interface => ui;
+        public int CurrentWave => currentWave;
 
         #endregion
 
@@ -26,19 +33,46 @@ namespace Assets.Scripts.Combat
         private void Start()
         {
             player.Reset();
+            currentWave = 1;
+            SetupWave();
 
             Interface.InitializePlayer(Player);
 
+            Interface.UpdateWaveText(currentWave);
             SetState(new Begin(this));
+        }
+
+        private void SetupWave()
+        {
+            currentEnemyIndex = 0;
+            currentWaveEnemies = new Fighter[3];
+
+            for (int i = 0; i < 2; i++)
+            {
+                int index = Random.Range(0, MinionTypes.Length);
+                currentWaveEnemies[i] = MinionTypes[index];
+            }
+
+            currentWaveEnemies[2] = BossType;
         }
 
         public void InitializeEnemy()
         {
-            if (EnemyTypes != null && EnemyTypes.Length > 0)
+            if (currentEnemyIndex >= 0 && currentEnemyIndex < currentWaveEnemies.Length)
             {
-                int index = Random.Range(0, EnemyTypes.Length);
-                enemy = EnemyTypes[index];
+                enemy = currentWaveEnemies[currentEnemyIndex];
                 Enemy.Reset();
+            }
+        }
+
+        public void OnEnemyDefeated()
+        {
+            currentEnemyIndex++;
+            if (currentEnemyIndex >= currentWaveEnemies.Length)
+            {
+                currentWave++;
+                SetupWave();
+                Interface.UpdateWaveText(currentWave);
             }
         }
 
@@ -64,14 +98,22 @@ namespace Assets.Scripts.Combat
 
         public void OnPauseButton()
         {
-
             Interface.ShowPauseMenu();
         }
 
         public void OnResumeButton()
         {
-
             Interface.HidePauseMenu();
+        }
+
+        public void OnMainMenuButton()
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
+
+        public void OnRestartButton()
+        {
+            SceneManager.LoadScene("Main");
         }
 
         public void OnAchievementButton()

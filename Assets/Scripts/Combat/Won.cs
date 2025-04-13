@@ -16,6 +16,8 @@ namespace Assets.Scripts.Combat
             bool isBoss = BattleSystem.Enemy.Name.Contains("Boss");
             AchievementManager.Instance.RegisterEnemyDefeated(isBoss);
 
+            BattleSystem.OnEnemyDefeated();
+
             yield return new WaitForSeconds(2f);
 
             BattleSystem.Interface.Initialize(BattleSystem.Player, BattleSystem.Enemy);
