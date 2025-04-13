@@ -85,7 +85,7 @@ public class AchievementManager : MonoBehaviour
 
     private void HandleAchievementUnlocked(Achievement achievement)
     {
-        SaveAchievements(); // Immediate save on unlock
+        SaveAchievements();
         ShowAchievementPopup(achievement);
         UpdateAchievementsUI();
     }

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Mon_5
   m_EditorClassIdentifier: 
   achievementID: MH_5
-  title: Monster Hunter (Bronze)
+  title: 'Monster Hunter '
   description: Defeat 5 Monsters
   tier: 0
   category: 0
   targetValue: 5
   isHidden: 0
   icon: {fileID: 1708315550016971311, guid: 13deb06f6cc17458f898735a64ac4d23, type: 3}
-  isUnlocked: 0
+  isUnlocked: 1

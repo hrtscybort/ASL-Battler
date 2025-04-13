@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: All_SIlver
   m_EditorClassIdentifier: 
   achievementID: ALL_SILVER
-  title: Achievement Collector (Silver)
+  title: Achievement Collector
   description: Collect All Silver Achievements
   tier: 1
   category: 4

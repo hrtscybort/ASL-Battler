@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss_15
   m_EditorClassIdentifier: 
   achievementID: BS_15
-  title: Boss Slayer (Gold)
+  title: 'Boss Slayer '
   description: Defeat 15 Bosses
   tier: 2
   category: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mon_40
   m_EditorClassIdentifier: 
   achievementID: MH_40
-  title: Monster Hunter (Secret)
+  title: Monster Hunter
   description: Defeat 40 Monsters
   tier: 3
   category: 0

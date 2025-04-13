@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mon_10
   m_EditorClassIdentifier: 
   achievementID: MH_10
-  title: Monster Hunter (Silver)
+  title: Monster Hunter
   description: Defeat 10 Monsters
   tier: 1
   category: 0

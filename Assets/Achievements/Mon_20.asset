@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mon_20
   m_EditorClassIdentifier: 
   achievementID: MH_20
-  title: Monster Hunter (Gold)
+  title: Monster Hunter
   description: Defeat 20 Monsters
   tier: 2
   category: 0

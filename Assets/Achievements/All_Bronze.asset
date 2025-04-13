@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: All_Bronze
   m_EditorClassIdentifier: 
   achievementID: ALL_BRONZE
-  title: Achievement Collector (Bronze)
+  title: Achievement Collector
   description: Collect All Bronze Achievements
   tier: 0
   category: 4

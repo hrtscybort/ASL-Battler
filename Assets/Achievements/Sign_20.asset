@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sign_20
   m_EditorClassIdentifier: 
   achievementID: SW_20
-  title: Sign Wizard (Gold)
+  title: Sign Wizard
   description: Sign Perfectly 20x
   tier: 2
   category: 2

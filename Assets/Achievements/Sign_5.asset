@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sign_5
   m_EditorClassIdentifier: 
   achievementID: SW_5
-  title: Sign Wizard (Bronze)
+  title: Sign Wizard
   description: Sign Perfectly 5x
   tier: 0
   category: 2
