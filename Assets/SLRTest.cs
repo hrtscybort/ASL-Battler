@@ -16,8 +16,11 @@ public class SLRTest : MonoBehaviour
     private int frame = 0;
     private List<string> levelSigns = new List<string>
     {
-        "yellow",
-        "dance"
+        "hesheit",
+        "dad",
+        "mom",
+        "boy",
+        "girl"
     };
 
     // Update is called once per frame
