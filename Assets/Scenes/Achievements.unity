@@ -392,7 +392,6 @@ GameObject:
   - component: {fileID: 499136456}
   - component: {fileID: 499136461}
   - component: {fileID: 499136460}
-  - component: {fileID: 499136459}
   - component: {fileID: 499136458}
   - component: {fileID: 499136457}
   m_Layer: 5
@@ -459,18 +458,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &499136459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499136455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290914c52baf14ed7accb6ad073662f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &499136460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   categoryName: Combo Signer
-  entriesContainer: {fileID: 2000143966}
+  entriesContainer: {fileID: 673708037}
 --- !u!114 &663446680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,7 +705,7 @@ GameObject:
   - component: {fileID: 868822821}
   - component: {fileID: 868822820}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button - Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,19 +754,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 868822821}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 6cae8d37581c74ee99a179e42f7b1127, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &868822821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,7 +1090,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1030179326}
   - component: {fileID: 1030179327}
-  - component: {fileID: 1030179328}
   m_Layer: 0
   m_Name: Achievement Manager
   m_TagString: Untagged
@@ -1168,19 +1142,6 @@ MonoBehaviour:
   silverIcon: {fileID: 8436042316626964991, guid: 8b2c1ade0a0874c5ba3b25f5f93e394a, type: 3}
   goldIcon: {fileID: -2025079244490526898, guid: 6e4e0eb755c4442f983575dfc74e6c52, type: 3}
   secretIcon: {fileID: 4018360891430564266, guid: a83cc7e9da34047899f3c78b02f210e4, type: 3}
---- !u!114 &1030179328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030179325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cae8d37581c74ee99a179e42f7b1127, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backButton: {fileID: 868822820}
 --- !u!1 &1072014791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cae8d37581c74ee99a179e42f7b1127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 0}
+  backButton: {fileID: 868822820}
 --- !u!4 &1089549957
 Transform:
   m_ObjectHideFlags: 0

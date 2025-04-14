@@ -20,6 +20,7 @@ namespace Assets.Scripts.Combat
         private int currentWave = 0;
         private int currentEnemyIndex = 0;
         private Fighter[] currentWaveEnemies;
+        private GamePhase currentPhase = GamePhase.Tutorial;
 
         public Fighter Player => player;
         public Fighter Enemy => enemy;
@@ -42,6 +43,8 @@ namespace Assets.Scripts.Combat
 
             Interface.UpdateWaveText(currentWave);
             SetState(new Begin(this));
+
+            Interface.ShowTutorial();
 
             if (startBattleButton != null)
             {
@@ -84,6 +87,8 @@ namespace Assets.Scripts.Combat
                 currentWave++;
                 SetupWave();
                 Interface.UpdateWaveText(currentWave);
+                currentPhase = GamePhase.Tutorial;
+                Interface.ShowTutorial();
             }
         }
 
@@ -139,8 +144,18 @@ namespace Assets.Scripts.Combat
 
         public void OnStartButton()
         {
-            Interface.HideTutorial();
+            if (currentPhase == GamePhase.Tutorial)
+            {
+                currentPhase = GamePhase.Monster;
+                Interface.HideTutorial();
+                InitializeEnemy();
+            }
             Debug.Log("Battle Started! Transition to the main battle screen.");
+        }
+
+        private void TutorialMode()
+        {
+            Interface.ShowTutorial();
         }
 
         public void OnBackButton()

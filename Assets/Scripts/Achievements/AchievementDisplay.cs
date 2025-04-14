@@ -16,6 +16,11 @@ public class AchievementDisplay : MonoBehaviour
 
     private void OnEnable() => RefreshAllAchievements();
 
+    public void Start()
+    {
+        RefreshAllAchievements();
+    }
+
     public void RefreshAllAchievements()
     {
         if (!AchievementManager.Instance) return;
