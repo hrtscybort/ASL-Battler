@@ -9,14 +9,20 @@ namespace Assets.Scripts.UI
         [SerializeField] private GameObject fighterPrefab;
         [SerializeField] private Transform playerParent;
         [SerializeField] private Transform enemyParent;
+        [SerializeField] private GameObject playerParentGO;
+        [SerializeField] private GameObject enemyParentGO;
         [SerializeField] private StatusDisplay playerStatusDisplay;
         [SerializeField] private StatusDisplay enemyStatusDisplay;
         [SerializeField] private GameObject PauseScreen;
         [SerializeField] private GameObject DefeatScreen;
         [SerializeField] private GameObject ActionsAndStatus;
         [SerializeField] private Button SpecialButton;
+        [SerializeField] private GameObject pauseButton;
         [SerializeField] private GameObject AchievementScreen;
+        [SerializeField] private GameObject TutorialScreen;
         [SerializeField] private Text WaveText;
+
+        private bool isInTutorial = true;
 
         public void Initialize(Fighter player, Fighter enemy)
         {
@@ -48,14 +54,34 @@ namespace Assets.Scripts.UI
         public void ShowPauseMenu()
         {
             PauseScreen.SetActive(true);
+            playerParentGO.SetActive(false);
+            enemyParentGO.SetActive(false);
             AchievementScreen.SetActive(false);
             ActionsAndStatus.SetActive(false);
+            pauseButton.SetActive(false);
         }
 
         public void HidePauseMenu()
         {
-            PauseScreen.SetActive(false);
+            if (isInTutorial) {
+                TutorialScreen.SetActive(true);
+                PauseScreen.SetActive(false);
+                pauseButton.SetActive(true);
+            } else {
+                PauseScreen.SetActive(false);
+                playerParentGO.SetActive(true);
+                enemyParentGO.SetActive(true);
+                ActionsAndStatus.SetActive(true);
+                pauseButton.SetActive(true);
+            }
+        }
+
+        public void HideTutorial()
+        {
+            playerParentGO.SetActive(true);
+            enemyParentGO.SetActive(true);
             ActionsAndStatus.SetActive(true);
+            TutorialScreen.SetActive(false);
         }
 
         public bool IsAchievementScreenActive()
@@ -65,9 +91,11 @@ namespace Assets.Scripts.UI
 
         public void ShowAchievementMenu()
         {
+            isInTutorial = false;
             AchievementScreen.SetActive(true);
             PauseScreen.SetActive(false);
             ActionsAndStatus.SetActive(false);
+            pauseButton.SetActive(false);
         }
 
         public void HideAchievementMenu()
@@ -75,6 +103,7 @@ namespace Assets.Scripts.UI
             AchievementScreen.SetActive(false);
             PauseScreen.SetActive(true);
             ActionsAndStatus.SetActive(false);
+            pauseButton.SetActive(false);
         }
 
         public void MainMenu()
