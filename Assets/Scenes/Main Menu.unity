@@ -1071,12 +1071,18 @@ MonoBehaviour:
   fighterPrefab: {fileID: 2258237836305513565, guid: 1052f1f29ca531644953d9b2d1a809b3, type: 3}
   playerParent: {fileID: 0}
   enemyParent: {fileID: 0}
+  playerParentGO: {fileID: 0}
+  enemyParentGO: {fileID: 0}
   playerStatusDisplay: {fileID: 0}
   enemyStatusDisplay: {fileID: 0}
   PauseScreen: {fileID: 0}
+  DefeatScreen: {fileID: 0}
   ActionsAndStatus: {fileID: 0}
   SpecialButton: {fileID: 0}
+  pauseButton: {fileID: 0}
   AchievementScreen: {fileID: 0}
+  TutorialScreen: {fileID: 0}
+  WaveText: {fileID: 0}
 --- !u!1 &1085981796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1093,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1085981798}
   - component: {fileID: 1085981797}
-  - component: {fileID: 1085981799}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1122,19 +1127,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1085981799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085981796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1700c1c051b1143fcb34f39b5fe71e31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  achievementsButton: {fileID: 2013345120}
 --- !u!850595691 &1318687327
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1703,8 +1695,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1085981797}
-        m_TargetAssemblyTypeName: MainMenuControls, Assembly-CSharp
-        m_MethodName: ShowAchievements
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: ShowAchievementMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

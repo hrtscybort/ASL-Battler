@@ -1,6 +1,7 @@
 using System.Collections;
 using Assets.Scripts.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Combat
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Combat
         [SerializeField] private Fighter player;
         [SerializeField] private Fighter[] minionTypes;
         [SerializeField] private Fighter bossType;
+        [SerializeField] private Button startBattleButton;
 
         private Fighter enemy;
         private int currentWave = 0;
@@ -40,6 +42,15 @@ namespace Assets.Scripts.Combat
 
             Interface.UpdateWaveText(currentWave);
             SetState(new Begin(this));
+
+            if (startBattleButton != null)
+            {
+                startBattleButton.onClick.AddListener(OnStartButton);
+            }
+            else
+            {
+                Debug.LogError("Start Battle Button is not assigned in the Inspector!");
+            }
         }
 
         private void SetupWave()
@@ -124,6 +135,12 @@ namespace Assets.Scripts.Combat
         public void OnMenuButton()
         {
             Interface.MainMenu();
+        }
+
+        public void OnStartButton()
+        {
+            Interface.HideTutorial();
+            Debug.Log("Battle Started! Transition to the main battle screen.");
         }
 
         public void OnBackButton()

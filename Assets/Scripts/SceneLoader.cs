@@ -48,4 +48,9 @@ public class SceneLoader : MonoBehaviour
         }
         return false;
     }
+
+    public void ShowAchievementMenu()
+    {
+        SceneManager.LoadScene("Achievements");
+    }
 }

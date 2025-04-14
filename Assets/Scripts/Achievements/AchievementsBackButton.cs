@@ -4,10 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class AchievementsBackButton : MonoBehaviour
 {
-    public void ReturnToMenu()
+    [SerializeField] private Button backButton;
+
+    private void Start()
     {
-        SceneLoader.Instance.UnloadScene("Achievements");
-        
+        if (backButton != null)
+        {
+            backButton.onClick.AddListener(MainMenu);
+        }
+        else
+        {
+            Debug.LogError("Back button is not assigned in the Inspector!");
+        }
+    }
+
+    public void MainMenu()
+    {
         SceneManager.LoadScene("Main Menu");
     }
 }
