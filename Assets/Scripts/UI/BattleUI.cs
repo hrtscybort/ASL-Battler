@@ -23,6 +23,7 @@ namespace Assets.Scripts.UI
         [SerializeField] private GameObject AchievementScreen;
         [SerializeField] private GameObject TutorialScreen;
         [SerializeField] private Text WaveText;
+        [SerializeField] private GameObject WaveTextGO;
 
         private bool isInTutorial = true;
 
@@ -61,6 +62,7 @@ namespace Assets.Scripts.UI
             AchievementScreen.SetActive(false);
             ActionsAndStatus.SetActive(false);
             pauseButton.SetActive(false);
+            WaveTextGO.SetActive(false);
         }
 
         public void HidePauseMenu()
@@ -75,6 +77,7 @@ namespace Assets.Scripts.UI
                 enemyParentGO.SetActive(true);
                 ActionsAndStatus.SetActive(true);
                 pauseButton.SetActive(true);
+                WaveTextGO.SetActive(true);
             }
         }
 
@@ -84,6 +87,7 @@ namespace Assets.Scripts.UI
             enemyParentGO.SetActive(true);
             ActionsAndStatus.SetActive(true);
             TutorialScreen.SetActive(false);
+            WaveTextGO.SetActive(true);
         }
 
         public void ShowTutorial()
@@ -92,6 +96,7 @@ namespace Assets.Scripts.UI
             enemyParentGO.SetActive(false);
             ActionsAndStatus.SetActive(false);
             TutorialScreen.SetActive(true);
+            WaveTextGO.SetActive(false);
         }
 
         public bool IsAchievementScreenActive()

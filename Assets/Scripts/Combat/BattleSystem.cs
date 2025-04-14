@@ -15,6 +15,7 @@ namespace Assets.Scripts.Combat
         [SerializeField] private Fighter[] minionTypes;
         [SerializeField] private Fighter bossType;
         [SerializeField] private Button startBattleButton;
+        [SerializeField] private VideoController videoController;
 
         private Fighter enemy;
         private int currentWave = 0;
@@ -87,6 +88,7 @@ namespace Assets.Scripts.Combat
                 currentWave++;
                 SetupWave();
                 Interface.UpdateWaveText(currentWave);
+                videoController.UpdateVideoForWave(currentWave);
                 currentPhase = GamePhase.Tutorial;
                 Interface.ShowTutorial();
             }
