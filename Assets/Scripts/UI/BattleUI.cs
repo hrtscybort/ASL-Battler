@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI
 {
+    public enum GamePhase { Tutorial, Monster, Boss }
+
     public class BattleUI : MonoBehaviour
     {
         [SerializeField] private GameObject fighterPrefab;
@@ -82,6 +84,14 @@ namespace Assets.Scripts.UI
             enemyParentGO.SetActive(true);
             ActionsAndStatus.SetActive(true);
             TutorialScreen.SetActive(false);
+        }
+
+        public void ShowTutorial()
+        {
+            playerParentGO.SetActive(false);
+            enemyParentGO.SetActive(false);
+            ActionsAndStatus.SetActive(false);
+            TutorialScreen.SetActive(true);
         }
 
         public bool IsAchievementScreenActive()
