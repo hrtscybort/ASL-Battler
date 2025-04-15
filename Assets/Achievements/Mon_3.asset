@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3293eee2c54842da9fabe6e92b62a38, type: 3}
-  m_Name: Boss_7
+  m_Name: Mon_3
   m_EditorClassIdentifier: 
-  achievementID: BS_7
-  title: Boss Slayer
-  description: Defeat 7 Bosses
-  tier: 1
-  category: 1
-  targetValue: 7
+  achievementID: MH_3
+  title: 'Monster Hunter '
+  description: Defeat 3 Monsters
+  tier: 0
+  category: 0
+  targetValue: 3
   isHidden: 0
-  icon: {fileID: 8436042316626964991, guid: 8b2c1ade0a0874c5ba3b25f5f93e394a, type: 3}
-  isUnlocked: 0
+  icon: {fileID: 1708315550016971311, guid: 13deb06f6cc17458f898735a64ac4d23, type: 3}
+  isUnlocked: 1

@@ -22,6 +22,7 @@ public class AchievementEntry : MonoBehaviour
         Debug.Log($"Displaying Achievement: {categoryName} - {current.description}");
 
         categoryTitle.text = categoryName.ToUpper();
+
         if (current.isUnlocked)
         {
             earnedDescription.text = current.description;
@@ -33,9 +34,20 @@ public class AchievementEntry : MonoBehaviour
             tierIcon.sprite = lockedSprite;
         }
 
-        if (next != null && next != current)
+        if (!current.isUnlocked)
         {
-            nextTierDescription.text = $"Next: {next.description} ({next.tier})";
+            nextTierDescription.text = $"Next: {current.description}";
+        }
+        else if (next != null && next != current)
+        {
+            if (current.tier == Achievement.Tier.Gold && next.tier == Achievement.Tier.Secret)
+            {
+                nextTierDescription.text = "Next: ??? (Secret)";
+            }
+            else
+            {
+                nextTierDescription.text = $"Next: {next.description}";
+            }
         }
         else
         {

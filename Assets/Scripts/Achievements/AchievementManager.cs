@@ -129,7 +129,7 @@ public class AchievementManager : MonoBehaviour
 
     private void CheckMonsterHunterAchievements()
     {
-        CheckAchievementProgress("MH_5", totalMonstersKilled);
+        CheckAchievementProgress("MH_3", totalMonstersKilled);
         CheckAchievementProgress("MH_10", totalMonstersKilled);
         CheckAchievementProgress("MH_20", totalMonstersKilled);
         CheckAchievementProgress("MH_40", totalMonstersKilled);
@@ -137,8 +137,8 @@ public class AchievementManager : MonoBehaviour
 
     private void CheckBossSlayerAchievements()
     {
-        CheckAchievementProgress("BS_3", totalBossesKilled);
-        CheckAchievementProgress("BS_7", totalBossesKilled);
+        CheckAchievementProgress("BS_1", totalBossesKilled);
+        CheckAchievementProgress("BS_5", totalBossesKilled);
         CheckAchievementProgress("BS_15", totalBossesKilled);
         CheckAchievementProgress("BS_25", totalBossesKilled);
     }
