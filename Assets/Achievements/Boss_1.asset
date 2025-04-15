@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3293eee2c54842da9fabe6e92b62a38, type: 3}
-  m_Name: Mon_5
+  m_Name: Boss_1
   m_EditorClassIdentifier: 
-  achievementID: MH_5
-  title: 'Monster Hunter '
-  description: Defeat 5 Monsters
+  achievementID: BS_1
+  title: Boss Slayer
+  description: Defeat 1 Bosses
   tier: 0
-  category: 0
-  targetValue: 5
+  category: 1
+  targetValue: 1
   isHidden: 0
   icon: {fileID: 1708315550016971311, guid: 13deb06f6cc17458f898735a64ac4d23, type: 3}
   isUnlocked: 1
