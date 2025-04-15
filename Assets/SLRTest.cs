@@ -35,11 +35,13 @@ public class SLRTest : MonoBehaviour
             init = true;
         }
 
-        // if (frame == 60) {
-        //     frame = 0;
-        //     engine.buffer.TriggerCallbacks();
-        // }
-        // else frame++;
-        engine.buffer.trigger = new CapacityFullTrigger<HandLandmarkerResult>(60);
+        if (frame == 60) {
+             frame = 0;
+             engine.buffer.TriggerCallbacks();
+        }
+        else frame++;
+
+        
+        //engine.buffer.trigger = new CapacityFullTrigger<HandLandmarkerResult>(80);
     }
 }
