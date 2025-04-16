@@ -5,12 +5,12 @@ using Common;
 using System;
 using Model;
 using Mediapipe.Tasks.Vision.HandLandmarker;
-
+using Assets.Scripts.Combat;
 
 public class SLRPhonemeTest : MonoBehaviour
 {
     public PhonemeExecutionEngine engine;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private BattleSystem battleSystem;
     private bool init;
 
     private int frame = 0;
@@ -23,7 +23,6 @@ public class SLRPhonemeTest : MonoBehaviour
         "girl"
     };
 
-    // Update is called once per frame
     void Update()
     {
         if(!init) {
@@ -33,6 +32,7 @@ public class SLRPhonemeTest : MonoBehaviour
             engine.recognizer.outputFilters.Clear();
             engine.recognizer.outputFilters.Add(new Thresholder<string>(0.1f));
             engine.recognizer.outputFilters.Add(new FocusSublistFilter<string>(levelSigns));
+
             init = true;
         }
 
@@ -46,6 +46,9 @@ public class SLRPhonemeTest : MonoBehaviour
         else frame++;
         */
         //Debug.Log(frame);
-        engine.buffer.trigger = new CapacityFullTrigger<HandLandmarkerResult>(80);
+        // engine.buffer.trigger = new CapacityFullTrigger<HandLandmarkerResult>(80);
+        if (battleSystem.CurrentState is PlayerTurn playerTurn && playerTurn.WaitingForSign) {
+            engine.buffer.TriggerCallbacks();
+        }
     }
 }

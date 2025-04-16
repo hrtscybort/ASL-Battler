@@ -29,6 +29,11 @@ namespace Assets.Scripts.Combat
         public Fighter BossType => bossType;
         public BattleUI Interface => ui;
         public int CurrentWave => currentWave;
+        public State CurrentState => State;
+
+        [SerializeField] private SignPromptUI SignUI;
+        public SignPromptUI signUI => SignUI;
+        public string[] vocab = { "hesheit", "dad", "mom", "boy", "girl" };
 
         #endregion
 
@@ -94,6 +99,7 @@ namespace Assets.Scripts.Combat
             }
         }
 
+        
         public void OnAttackButton()
         {
             StartCoroutine(State.Attack());
