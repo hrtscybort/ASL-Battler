@@ -6,6 +6,7 @@ namespace Assets.Scripts.Combat
     public class PlayerTurn : State
 {
     private string currentActionWord;
+    public string CurrentActionWord => currentActionWord;
     private bool waitingForSign = false;
     public bool WaitingForSign => waitingForSign;
 

@@ -5,6 +5,7 @@ using TMPro;
 public class SignPromptUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text wordText;
+    public TMP_Text WordText => wordText;
     // [SerializeField] private TMP_Text feedbackText;
     
     public bool IsDone { get; private set; }
