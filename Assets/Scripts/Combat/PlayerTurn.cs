@@ -67,6 +67,8 @@ namespace Assets.Scripts.Combat
 
         BattleSystem.Player.Charge(BattleSystem.Player.Charging);
 
+        ShowFeedback(accuracy);
+
         yield return new WaitForSeconds(1f);
 
         if (isDead)
@@ -135,6 +137,36 @@ namespace Assets.Scripts.Combat
     public override IEnumerator Defend()
     {
         return PerformSignedAction("defend");
+    }
+
+    private void ShowFeedback(float accuracy)
+    {
+        string message;
+        Color color;
+
+        if (accuracy >= 0.95f)
+        {
+            message = "Perfect!";
+            color = Color.green;
+        }
+        else if (accuracy >= 0.5f)
+        {
+            message = "Almost!";
+            color = new Color(1f, 0.85f, 0f); // yellow-ish
+        }
+        else
+        {
+            message = "Wrong!";
+            color = Color.red;
+        }
+
+        var feedbackGO = GameObject.Instantiate(
+            BattleSystem.feedbackMessagePrefab,
+            BattleSystem.playerHeadTransform.position,
+            Quaternion.identity
+        );
+        feedbackGO.transform.SetParent(BattleSystem.playerHeadTransform, true);
+        feedbackGO.GetComponent<FeedbackTextUI>().Show(message, color);
     }
 }
 }
