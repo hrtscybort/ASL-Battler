@@ -310,6 +310,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordText: {fileID: 277508306}
+  referenceVideo: {fileID: 2072903664}
+  referenceButton: {fileID: 314784495}
+  tutorialVideos:
+  - {fileID: 32900000, guid: 64f919a3fd76a8c409deb04d3b8a13c2, type: 3}
+  - {fileID: 32900000, guid: f2c404f0f298d9342b1525f1e30b2f78, type: 3}
+  - {fileID: 32900000, guid: 818ed81e62ac9c84a9bfc15edb93c4a3, type: 3}
+  video: {fileID: 1517666224}
 --- !u!114 &92358695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,7 +788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &250357228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -798,7 +805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 81.678246, y: 108}
+  m_AnchoredPosition: {x: 83, y: 65}
   m_SizeDelta: {x: 133.3565, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &277508304
@@ -2338,7 +2345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.5999756, y: 254.9}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882283829
@@ -4959,6 +4966,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave1Videos:
   - {fileID: 32900000, guid: 64f919a3fd76a8c409deb04d3b8a13c2, type: 3}
+  - {fileID: 32900000, guid: f2c404f0f298d9342b1525f1e30b2f78, type: 3}
+  - {fileID: 32900000, guid: 818ed81e62ac9c84a9bfc15edb93c4a3, type: 3}
   wave2Videos:
   - {fileID: 32900000, guid: ee27258d1d1e4ed459d50dfe800f66df, type: 3}
   - {fileID: 32900000, guid: 90567dd11940f084abf45cc588df93b7, type: 3}
@@ -5888,11 +5897,14 @@ MonoBehaviour:
   startBattleButton: {fileID: 241928779}
   videoController: {fileID: 1457010945}
   camera: {fileID: 963194225}
-  FeedbackMessagePrefab: {fileID: 0}
+  FeedbackMessagePrefab: {fileID: 6321610357114469300, guid: 2bdab498a68024670b3b8b093d904968, type: 3}
   PlayerHeadTransform: {fileID: 250357228}
+  data: {fileID: 2047898485}
   SignUI: {fileID: 92358694}
   vocab:
   - water
+  - mom
+  - dad
 --- !u!4 &1773890702
 Transform:
   m_ObjectHideFlags: 0
@@ -5930,7 +5942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1019367845032306292, guid: ba0131aa47c97433db2ab630a1ecd5cf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 54.6156
+      value: 48.2199
       objectReference: {fileID: 0}
     - target: {fileID: 1019367845032306292, guid: ba0131aa47c97433db2ab630a1ecd5cf, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5938,7 +5950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1019367845032306292, guid: ba0131aa47c97433db2ab630a1ecd5cf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -129.21188
+      value: -137.02884
       objectReference: {fileID: 0}
     - target: {fileID: 4499933770935996480, guid: ba0131aa47c97433db2ab630a1ecd5cf, type: 3}
       propertyPath: m_LocalScale.x
@@ -7076,7 +7088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2072903665
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7093,7 +7105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.4701, y: 131.32}
+  m_AnchoredPosition: {x: 0.47056, y: 122}
   m_SizeDelta: {x: 281.8679, y: 166.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072903666

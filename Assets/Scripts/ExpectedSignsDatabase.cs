@@ -6,8 +6,8 @@ public class ExpectedSignsDatabase : MonoBehaviour
 {
     private Dictionary<string,string> _expectedHandshapes;
     private Dictionary<string,string> _expectedLocations;
-    private bool correctHandshape = false; 
-    private bool correctLocation = false;
+    private bool correctHandshape; 
+    private bool correctLocation;
     public bool CorrectHandshape => correctHandshape;
     public bool CorrectLocation => correctLocation;
 
@@ -29,6 +29,9 @@ public class ExpectedSignsDatabase : MonoBehaviour
 
     public int CountCorrectFields(PhonemePrediction result)
     {
+        correctHandshape = false;
+        correctLocation = false;
+
         int correct = 0;
 
         if (_expectedHandshapes.TryGetValue(result.gloss, out var expectedShape) &&
@@ -41,7 +44,7 @@ public class ExpectedSignsDatabase : MonoBehaviour
         if (_expectedLocations.TryGetValue(result.gloss, out var expectedLoc) &&
             (expectedLoc == "N/A" || expectedLoc == result.minorLocation))
         {
-            correctHandshape = true;
+            correctLocation= true;
             correct++;
         }
 
