@@ -20,6 +20,10 @@ namespace Assets.Scripts.Combat
         [SerializeField] private GameObject camera;
         [SerializeField] private GameObject FeedbackMessagePrefab;
         [SerializeField] private Transform PlayerHeadTransform;
+        [SerializeField] private ExpectedSignsDatabase data;
+        [SerializeField] private AchievementManager manager;
+        public AchievementManager Manager => manager;
+        public ExpectedSignsDatabase Data => data;
         public GameObject feedbackMessagePrefab => FeedbackMessagePrefab;
         public Transform playerHeadTransform => PlayerHeadTransform;
 
@@ -39,7 +43,7 @@ namespace Assets.Scripts.Combat
 
         [SerializeField] private SignPromptUI SignUI;
         public SignPromptUI signUI => SignUI;
-        public string[] vocab = {"water"};
+        public string[] vocab = {"water", "mom", "dad"};
 
         #endregion
 

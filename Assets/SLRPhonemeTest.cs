@@ -20,7 +20,9 @@ public class SLRPhonemeTest : MonoBehaviour
     private int frame = 0;
     private List<string> levelSigns = new List<string>
     {
-        "water"
+        "water",
+        "mom",
+        "dad"
     };
 
     void Update()
@@ -86,8 +88,13 @@ public class SLRPhonemeTest : MonoBehaviour
             {
                 int correctFields = signsDatabase.CountCorrectFields(result);
                 float score = correctFields / 2f;
-                
-                battleSystem.signUI.Finish(score);
+
+                if (signUI.tutorialPressed) {
+                    battleSystem.signUI.Finish(0.1f);
+                }
+                else {
+                    battleSystem.signUI.Finish(score);
+                }
             }
             else
             {

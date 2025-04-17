@@ -67,6 +67,12 @@ namespace Assets.Scripts.Combat
 
         BattleSystem.Player.Charge(BattleSystem.Player.Charging);
 
+        if (accuracy == 1f) {
+            BattleSystem.Manager.RegisterPerfectSign(true);
+        } else {
+            BattleSystem.Manager.RegisterPerfectSign(false);
+        }
+       
         ShowFeedback(accuracy);
 
         yield return new WaitForSeconds(1f);
@@ -86,6 +92,14 @@ namespace Assets.Scripts.Combat
         int healAmount = Mathf.RoundToInt(BattleSystem.Player.Healing * accuracy);
         BattleSystem.Player.Heal(healAmount);
 
+        if (accuracy == 1f) {
+            BattleSystem.Manager.RegisterPerfectSign(true);
+        } else {
+            BattleSystem.Manager.RegisterPerfectSign(false);
+        }
+
+        ShowFeedback(accuracy);
+
         yield return new WaitForSeconds(1f);
         BattleSystem.SetState(new EnemyTurn(BattleSystem));
     }
@@ -94,6 +108,14 @@ namespace Assets.Scripts.Combat
     {
         int defenseBoost = Mathf.RoundToInt(BattleSystem.Player.Defending * accuracy);
         BattleSystem.Player.Defend(defenseBoost);
+
+        if (accuracy == 1f) {
+            BattleSystem.Manager.RegisterPerfectSign(true);
+        } else {
+            BattleSystem.Manager.RegisterPerfectSign(false);
+        }
+
+        ShowFeedback(accuracy);
 
         yield return new WaitForSeconds(1f);
         BattleSystem.SetState(new EnemyTurn(BattleSystem));
@@ -144,14 +166,19 @@ namespace Assets.Scripts.Combat
         string message;
         Color color;
 
-        if (accuracy >= 0.95f)
+        if (BattleSystem.Data.CorrectHandshape && BattleSystem.Data.CorrectLocation)
         {
             message = "Perfect!";
             color = Color.green;
         }
-        else if (accuracy >= 0.5f)
+        else if (!BattleSystem.Data.CorrectHandshape && BattleSystem.Data.CorrectLocation)
         {
-            message = "Almost!";
+            message = "Wrong \n Handshape!";
+            color = new Color(1f, 0.85f, 0f); // yellow-ish
+        }
+        else if (!BattleSystem.Data.CorrectLocation && BattleSystem.Data.CorrectHandshape)
+        {
+            message = "Wrong \n Location!";
             color = new Color(1f, 0.85f, 0f); // yellow-ish
         }
         else
