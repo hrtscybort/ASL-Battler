@@ -3,6 +3,7 @@ using Assets.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace Assets.Scripts.Combat
 {
@@ -17,6 +18,10 @@ namespace Assets.Scripts.Combat
         [SerializeField] private Button startBattleButton;
         [SerializeField] private VideoController videoController;
         [SerializeField] private GameObject camera;
+        [SerializeField] private GameObject FeedbackMessagePrefab;
+        [SerializeField] private Transform PlayerHeadTransform;
+        public GameObject feedbackMessagePrefab => FeedbackMessagePrefab;
+        public Transform playerHeadTransform => PlayerHeadTransform;
 
         private Fighter enemy;
         private int currentWave = 0;
