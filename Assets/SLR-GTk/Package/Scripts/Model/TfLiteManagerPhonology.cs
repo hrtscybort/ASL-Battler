@@ -72,6 +72,8 @@ namespace Model {
         private Dictionary<int, string> idx_to_handshape;
         private Dictionary<int, string> idx_to_minor_loc;
 
+		//private List<string> gloss_mapping;
+
         private Dictionary<string, string> category_to_handshape;
 
         private Dictionary<string, string> category_to_minor_location;
@@ -90,6 +92,10 @@ namespace Model {
 			this.idx_to_category = idx_to_category;
 			this.idx_to_handshape = idx_to_handshape;
 			this.idx_to_minor_loc = idx_to_minor_loc;
+
+
+			// Apply filters on the gloss output
+			
 		}
 
 		public void RunModel(float[] data) {
@@ -106,17 +112,16 @@ namespace Model {
 			interpreter.GetOutputTensorData(0, handshapeOutputs);
 			interpreter.GetOutputTensorData(2, minorLocationOutputs);
 
+			float[] sendGlossOutputs = new float[glossOutputs.Length];
+			Array.Copy(glossOutputs, sendGlossOutputs, glossOutputs.Length);
+			// Debug.Log("outputs: " + string.Join(", ", sendOutputs));
+			// float[] outputs = modelOutputTensor.ToArray();
 
-			// Apply filters on the gloss output
 			List<string> gloss_mapping = new List<string>();
 			for (int i = 0; i < 506; i++) {
 				gloss_mapping.Add(idx_to_category[i]);
 			}
 
-			float[] sendGlossOutputs = new float[glossOutputs.Length];
-			Array.Copy(glossOutputs, sendGlossOutputs, glossOutputs.Length);
-			// Debug.Log("outputs: " + string.Join(", ", sendOutputs));
-			// float[] outputs = modelOutputTensor.ToArray();
 			FilterUnit<string> glossOutput = new FilterUnit<string>(gloss_mapping, sendGlossOutputs);
 			foreach (var filter in outputFilters)
 			{
@@ -128,13 +133,51 @@ namespace Model {
 			//Extract the output indicies from each result
 			
 			//int glossIndex = MathUtil.Argmax(new List<float>(glossOutputs));
-			
-			int glossIndex = MathUtil.Argmax(glossOutput.probabilities.ToList());
-			int handshapeIndex = MathUtil.Argmax(new List<float>(handshapeOutputs));
-			int minorLocationIndex = MathUtil.Argmax(new List<float>(minorLocationOutputs) );
+
+			List<float> glossOutputList = glossOutput.probabilities.ToList();
+			List<float> handshapeOutputsList = new List<float>(handshapeOutputs);
+			List<float> minorLocationOutputsList = new List<float>(minorLocationOutputs);
+
+			int glossIndex = 0;
+			int handshapeIndex = 0;
+			int minorLocationIndex = 0;
+
+			if (glossOutputList.Count >= 1) {
+				glossIndex = MathUtil.Argmax(glossOutputList);
+			} else {
+				Debug.Log("Handshape outputs count is less than or equal to 1. List: " + glossOutputList + " Output: " + glossOutputs);
+				foreach (var callback in callbacks) {
+					callbacks[callback.Key].Invoke(new PhonemePrediction("None", "None", "None"));
+				}
+				return;
+			}
+
+			if (handshapeOutputsList.Count >= 1) {
+				handshapeIndex = MathUtil.Argmax(new List<float>(handshapeOutputs));
+			} else {
+				Debug.Log("Handshape outputs count is less than or equal to 1. List: " + handshapeOutputsList + " Output: " + handshapeOutputs);
+				foreach (var callback in callbacks) {
+					callbacks[callback.Key].Invoke(new PhonemePrediction("None", "None", "None"));
+				}
+				return;
+			}
+
+			if (minorLocationOutputsList.Count >= 1) {
+				minorLocationIndex = MathUtil.Argmax(new List<float>(minorLocationOutputs));
+			} else {
+				Debug.Log("Minor Location outputs count is less than or equal to 1. List: " + minorLocationOutputsList + " Output: " + minorLocationOutputs);
+				foreach (var callback in callbacks) {
+					callbacks[callback.Key].Invoke(new PhonemePrediction("None", "None", "None"));
+				}
+				return;
+			}
+
+
 
 
 			//string glossString = this.idx_to_category[glossIndex];
+
+			
 			string glossString = glossOutput.mapping[glossIndex];
 			string handshapeString = this.idx_to_handshape[handshapeIndex];
 			string minorLocationString = this.idx_to_minor_loc[minorLocationIndex];
@@ -166,6 +209,11 @@ namespace Model {
 
 		public void RemoveCallback(string name) {
 			callbacks.Remove(name);
+		}
+
+
+		public string toString() {
+			return "SLRPhoneme model. Callbacks: " + this.callbacks;
 		}
 	}
 }

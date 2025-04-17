@@ -16,13 +16,13 @@ MonoBehaviour:
   _level: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _sprite: {fileID: 3569097331267006561, guid: 165fd2a85d39446ba9c9ca1363da56f3, type: 3}
-  _currentHealth: 200
-  _maxHealth: 200
-  _currentMana: 100
+  _currentHealth: 390
+  _maxHealth: 400
+  _currentMana: 20
   _maxMana: 100
   _currentShield: 0
   _maxShield: 50
-  _attack: 100
+  _attack: 50
   _healing: 30
   _charging: 20
   _special: 40
